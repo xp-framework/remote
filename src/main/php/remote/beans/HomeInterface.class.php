@@ -1,23 +1,18 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\beans;
 
-  uses('remote.beans.BeanInterface');
+
+
+/**
+ * Interface for all home interfaces
+ *
+ * @purpose  Home Interface
+ */
+interface HomeInterface extends BeanInterface {
 
   /**
-   * Interface for all home interfaces
+   * Create method
    *
-   * @purpose  Home Interface
+   * @return  remote.beans.Bean
    */
-  interface HomeInterface extends BeanInterface {
-  
-    /**
-     * Create method
-     *
-     * @return  remote.beans.Bean
-     */
-    public function create();
-  }
-?>
+  public function create();
+}

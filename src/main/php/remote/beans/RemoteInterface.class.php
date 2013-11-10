@@ -1,17 +1,12 @@
-<?php
-/* This class is part of the XP framework
+<?php namespace remote\beans;
+
+
+
+/**
+ * RemoteInterface 
  *
- * $Id$ 
+ * @purpose  Remote Interface
  */
+interface RemoteInterface extends BeanInterface {
 
-  uses('remote.beans.BeanInterface');
-
-  /**
-   * RemoteInterface 
-   *
-   * @purpose  Remote Interface
-   */
-  interface RemoteInterface extends BeanInterface {
-  
-  }
-?>
+}

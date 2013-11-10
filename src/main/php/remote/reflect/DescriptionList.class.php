@@ -1,48 +1,43 @@
-<?php
-/* This class is part of the XP framework
+<?php namespace remote\reflect;
+
+/**
+ * List of BeanDescription objects
  *
- * $Id$ 
+ * @see      xp://remote.reflect.BeanDescription
+ * @purpose  Wrapper
  */
+class DescriptionList extends \lang\Object {
+  public
+    $beans= array();
+    
+  /**
+   * Returns a list of all beans
+   *
+   * @return  remote.reflect.BeanDescription[]
+   */
+  public function beans() {
+    return array_values($this->beans);
+  }
 
   /**
-   * List of BeanDescription objects
+   * Returns number of beans
    *
-   * @see      xp://remote.reflect.BeanDescription
-   * @purpose  Wrapper
+   * @return  int
    */
-  class DescriptionList extends Object {
-    public
-      $beans= array();
-      
-    /**
-     * Returns a list of all beans
-     *
-     * @return  remote.reflect.BeanDescription[]
-     */
-    public function beans() {
-      return array_values($this->beans);
-    }
-
-    /**
-     * Returns number of beans
-     *
-     * @return  int
-     */
-    public function size() {
-      return sizeof($this->beans);
-    }
-
-    /**
-     * Retrieve a single bean
-     *
-     * @param   string name
-     * @return  remote.reflect.BeanDescription or NULL if nothing is found
-     */
-    public function bean($name) {
-      if (!isset($this->beans[$name])) {
-        return xp::null();
-      }
-      return $this->beans[$name];
-    }
+  public function size() {
+    return sizeof($this->beans);
   }
-?>
+
+  /**
+   * Retrieve a single bean
+   *
+   * @param   string name
+   * @return  remote.reflect.BeanDescription or NULL if nothing is found
+   */
+  public function bean($name) {
+    if (!isset($this->beans[$name])) {
+      return \xp::null();
+    }
+    return $this->beans[$name];
+  }
+}

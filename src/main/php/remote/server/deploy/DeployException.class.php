@@ -1,19 +1,15 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server\deploy;
  
-  uses('remote.RemoteException');
+use remote\RemoteException;
 
-  /**
-   * Deployment exception
-   *
-   * @ext      extension
-   * @see      reference
-   * @purpose  purpose
-   */
-  class DeployException extends RemoteException {
-  
-  }
-?>
+
+/**
+ * Deployment exception
+ *
+ * @ext      extension
+ * @see      reference
+ * @purpose  purpose
+ */
+class DeployException extends RemoteException {
+
+}

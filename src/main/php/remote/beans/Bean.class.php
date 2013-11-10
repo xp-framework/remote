@@ -1,15 +1,10 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\beans;
 
-  /**
-   * Base class for all beans
-   *
-   * @purpose  Base Bean
-   */
-  class Bean extends Object {
-  
-  }
-?>
+/**
+ * Base class for all beans
+ *
+ * @purpose  Base Bean
+ */
+class Bean extends \lang\Object {
+
+}

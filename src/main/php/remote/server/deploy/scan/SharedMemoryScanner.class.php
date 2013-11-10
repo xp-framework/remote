@@ -1,47 +1,40 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server\deploy\scan;
 
-  uses(
-    'remote.server.deploy.Deployment',
-    'io.sys.ShmSegment',
-    'remote.server.deploy.scan.DeploymentScanner'
-  );
+use remote\server\deploy\Deployment;
+use io\sys\ShmSegment;
+
+
+/**
+ * Deployment scanner
+ *
+ * @purpose  Interface
+ */
+class SharedMemoryScanner extends \lang\Object implements DeploymentScanner {
 
   /**
-   * Deployment scanner
+   * Constructor
    *
-   * @purpose  Interface
    */
-  class SharedMemoryScanner extends Object implements DeploymentScanner {
+  public function __construct() {
+    $this->storage= new ShmSegment(0x3c872747);
+  }
 
-    /**
-     * Constructor
-     *
-     */
-    public function __construct() {
-      $this->storage= new ShmSegment(0x3c872747);
-    }
-  
-    /**
-     * Scan if deployments changed
-     *
-     * @return  bool 
-     */
-    public function scanDeployments() {
-      if ($this->storage->isEmpty()) return FALSE;
-      return TRUE;
-    }
+  /**
+   * Scan if deployments changed
+   *
+   * @return  bool 
+   */
+  public function scanDeployments() {
+    if ($this->storage->isEmpty()) return false;
+    return true;
+  }
 
-    /**
-     * Get a list of deployments
-     *
-     * @return  remote.server.deploy.Deployable[]
-     */
-    public function getDeployments() {
-      return $this->storage->get();
-    }
-  } 
-?>
+  /**
+   * Get a list of deployments
+   *
+   * @return  remote.server.deploy.Deployable[]
+   */
+  public function getDeployments() {
+    return $this->storage->get();
+  }
+} 

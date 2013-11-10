@@ -1,25 +1,20 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server\message;
 
-  uses('remote.server.message.EascMessage');
+
+
+/**
+ * EASC exception message
+ *
+ * @purpose  Exception message
+ */
+class EascExceptionMessage extends EascMessage {
 
   /**
-   * EASC exception message
+   * Get type of message
    *
-   * @purpose  Exception message
+   * @return  int
    */
-  class EascExceptionMessage extends EascMessage {
-
-    /**
-     * Get type of message
-     *
-     * @return  int
-     */
-    public function getType() {
-      return REMOTE_MSG_EXCEPTION;
-    }
+  public function getType() {
+    return REMOTE_MSG_EXCEPTION;
   }
-?>
+}

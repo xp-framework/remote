@@ -1,17 +1,12 @@
-<?php
-/* This class is part of the XP framework
+<?php namespace remote\beans;
+
+define('STATELESS', 1);
+
+/**
+ * Bean Interface
  *
- * $Id$ 
+ * @purpose  Base interface
  */
+interface BeanInterface {
 
-  define('STATELESS', 1);
-
-  /**
-   * Bean Interface
-   *
-   * @purpose  Base interface
-   */
-  interface BeanInterface {
-  
-  }
-?>
+}

@@ -1,49 +1,44 @@
-<?php
-/* This class is part of the XP framework
+<?php namespace remote\server\message;
+
+/**
+ * EASC server base message
  *
- * $Id$ 
+ * @purpose  EASC message
  */
+abstract class EascMessage extends \lang\Object {
+  public
+    $value  = null;
+  
+  /**
+   * Get type of message
+   *
+   * @return  int
+   */
+  public abstract function getType();    
 
   /**
-   * EASC server base message
+   * Set Value
    *
-   * @purpose  EASC message
+   * @param   lang.Object value
    */
-  abstract class EascMessage extends Object {
-    public
-      $value  = NULL;
-    
-    /**
-     * Get type of message
-     *
-     * @return  int
-     */
-    public abstract function getType();    
-
-    /**
-     * Set Value
-     *
-     * @param   lang.Object value
-     */
-    public function setValue($value) {
-      $this->value= $value;
-    }
-
-    /**
-     * Get Value
-     *
-     * @return  lang.Object
-     */
-    public function getValue() {
-      return $this->value;
-    }
-    
-    /**
-     * Handle message
-     *
-     * @param   remote.server.EASCProtocol protocol
-     * @return  var data
-     */
-    public function handle($protocol, $data) { }
+  public function setValue($value) {
+    $this->value= $value;
   }
-?>
+
+  /**
+   * Get Value
+   *
+   * @return  lang.Object
+   */
+  public function getValue() {
+    return $this->value;
+  }
+  
+  /**
+   * Handle message
+   *
+   * @param   remote.server.EASCProtocol protocol
+   * @return  var data
+   */
+  public function handle($protocol, $data) { }
+}

@@ -1,25 +1,20 @@
-<?php
-/* This class is part of the XP framework
+<?php namespace remote;
+
+/**
+ * Represents a stack frame existing on the remote side
  *
- * $Id$ 
+ * @see      xp://lang.StackTraceElement
+ * @purpose  Specialized StackTraceElement
  */
+class RemoteStackTraceElement extends \lang\StackTraceElement {
 
   /**
-   * Represents a stack frame existing on the remote side
+   * Returns qualified class name
    *
-   * @see      xp://lang.StackTraceElement
-   * @purpose  Specialized StackTraceElement
+   * @param   string class unqualified name
+   * @return  string
    */
-  class RemoteStackTraceElement extends StackTraceElement {
-  
-    /**
-     * Returns qualified class name
-     *
-     * @param   string class unqualified name
-     * @return  string
-     */
-    protected function qualifiedClassName($class) {
-      return $class;
-    }
+  protected function qualifiedClassName($class) {
+    return $class;
   }
-?>
+}

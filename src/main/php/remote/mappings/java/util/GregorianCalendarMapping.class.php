@@ -1,255 +1,251 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\mappings\java\util;
 
-  uses('util.Date');
+use util\Date;
+
+
+/**
+ * Mapping for java.util.GregorianCalendar
+ *
+ * @purpose  Mapping
+ */
+class GregorianCalendarMapping extends \lang\Object {
+
+  public
+    $minimalDaysInFirstWeek= null,
+    $serialVersionOnStream= null,
+    $gregorianCutover= null,
+    $firstDayOfWeek= null,
+    $areFieldsSet= null,
+    $nextStamp= null,
+    $isTimeSet= null,
+    $lenient= null,
+    $fields= null,
+    $isSet= null,
+    $time= null,
+    $zone= null;
 
   /**
-   * Mapping for java.util.GregorianCalendar
+   * Set minimalDaysInFirstWeek
    *
-   * @purpose  Mapping
+   * @param   lang.Object minimalDaysInFirstWeek
    */
-  class GregorianCalendarMapping extends Object {
+  public function setMinimalDaysInFirstWeek($minimalDaysInFirstWeek) {
+    $this->minimalDaysInFirstWeek= $minimalDaysInFirstWeek;
+  }
 
-    public
-      $minimalDaysInFirstWeek= NULL,
-      $serialVersionOnStream= NULL,
-      $gregorianCutover= NULL,
-      $firstDayOfWeek= NULL,
-      $areFieldsSet= NULL,
-      $nextStamp= NULL,
-      $isTimeSet= NULL,
-      $lenient= NULL,
-      $fields= NULL,
-      $isSet= NULL,
-      $time= NULL,
-      $zone= NULL;
+  /**
+   * Get minimalDaysInFirstWeek
+   *
+   * @return  lang.Object
+   */
+  public function getMinimalDaysInFirstWeek() {
+    return $this->minimalDaysInFirstWeek;
+  }
 
-    /**
-     * Set minimalDaysInFirstWeek
-     *
-     * @param   lang.Object minimalDaysInFirstWeek
-     */
-    public function setMinimalDaysInFirstWeek($minimalDaysInFirstWeek) {
-      $this->minimalDaysInFirstWeek= $minimalDaysInFirstWeek;
-    }
+  /**
+   * Set serialVersionOnStream
+   *
+   * @param   lang.Object serialVersionOnStream
+   */
+  public function setSerialVersionOnStream($serialVersionOnStream) {
+    $this->serialVersionOnStream= $serialVersionOnStream;
+  }
 
-    /**
-     * Get minimalDaysInFirstWeek
-     *
-     * @return  lang.Object
-     */
-    public function getMinimalDaysInFirstWeek() {
-      return $this->minimalDaysInFirstWeek;
-    }
+  /**
+   * Get serialVersionOnStream
+   *
+   * @return  lang.Object
+   */
+  public function getSerialVersionOnStream() {
+    return $this->serialVersionOnStream;
+  }
 
-    /**
-     * Set serialVersionOnStream
-     *
-     * @param   lang.Object serialVersionOnStream
-     */
-    public function setSerialVersionOnStream($serialVersionOnStream) {
-      $this->serialVersionOnStream= $serialVersionOnStream;
-    }
+  /**
+   * Set gregorianCutover
+   *
+   * @param   lang.Object gregorianCutover
+   */
+  public function setGregorianCutover($gregorianCutover) {
+    $this->gregorianCutover= $gregorianCutover;
+  }
 
-    /**
-     * Get serialVersionOnStream
-     *
-     * @return  lang.Object
-     */
-    public function getSerialVersionOnStream() {
-      return $this->serialVersionOnStream;
-    }
+  /**
+   * Get gregorianCutover
+   *
+   * @return  lang.Object
+   */
+  public function getGregorianCutover() {
+    return $this->gregorianCutover;
+  }
 
-    /**
-     * Set gregorianCutover
-     *
-     * @param   lang.Object gregorianCutover
-     */
-    public function setGregorianCutover($gregorianCutover) {
-      $this->gregorianCutover= $gregorianCutover;
-    }
+  /**
+   * Set firstDayOfWeek
+   *
+   * @param   lang.Object firstDayOfWeek
+   */
+  public function setFirstDayOfWeek($firstDayOfWeek) {
+    $this->firstDayOfWeek= $firstDayOfWeek;
+  }
 
-    /**
-     * Get gregorianCutover
-     *
-     * @return  lang.Object
-     */
-    public function getGregorianCutover() {
-      return $this->gregorianCutover;
-    }
+  /**
+   * Get firstDayOfWeek
+   *
+   * @return  lang.Object
+   */
+  public function getFirstDayOfWeek() {
+    return $this->firstDayOfWeek;
+  }
 
-    /**
-     * Set firstDayOfWeek
-     *
-     * @param   lang.Object firstDayOfWeek
-     */
-    public function setFirstDayOfWeek($firstDayOfWeek) {
-      $this->firstDayOfWeek= $firstDayOfWeek;
-    }
+  /**
+   * Set areFieldsSet
+   *
+   * @param   lang.Object areFieldsSet
+   */
+  public function setAreFieldsSet($areFieldsSet) {
+    $this->areFieldsSet= $areFieldsSet;
+  }
 
-    /**
-     * Get firstDayOfWeek
-     *
-     * @return  lang.Object
-     */
-    public function getFirstDayOfWeek() {
-      return $this->firstDayOfWeek;
-    }
+  /**
+   * Get areFieldsSet
+   *
+   * @return  lang.Object
+   */
+  public function getAreFieldsSet() {
+    return $this->areFieldsSet;
+  }
 
-    /**
-     * Set areFieldsSet
-     *
-     * @param   lang.Object areFieldsSet
-     */
-    public function setAreFieldsSet($areFieldsSet) {
-      $this->areFieldsSet= $areFieldsSet;
-    }
+  /**
+   * Set nextStamp
+   *
+   * @param   lang.Object nextStamp
+   */
+  public function setNextStamp($nextStamp) {
+    $this->nextStamp= $nextStamp;
+  }
 
-    /**
-     * Get areFieldsSet
-     *
-     * @return  lang.Object
-     */
-    public function getAreFieldsSet() {
-      return $this->areFieldsSet;
-    }
+  /**
+   * Get nextStamp
+   *
+   * @return  lang.Object
+   */
+  public function getNextStamp() {
+    return $this->nextStamp;
+  }
 
-    /**
-     * Set nextStamp
-     *
-     * @param   lang.Object nextStamp
-     */
-    public function setNextStamp($nextStamp) {
-      $this->nextStamp= $nextStamp;
-    }
+  /**
+   * Set isTimeSet
+   *
+   * @param   lang.Object isTimeSet
+   */
+  public function setIsTimeSet($isTimeSet) {
+    $this->isTimeSet= $isTimeSet;
+  }
 
-    /**
-     * Get nextStamp
-     *
-     * @return  lang.Object
-     */
-    public function getNextStamp() {
-      return $this->nextStamp;
-    }
+  /**
+   * Get isTimeSet
+   *
+   * @return  lang.Object
+   */
+  public function getIsTimeSet() {
+    return $this->isTimeSet;
+  }
 
-    /**
-     * Set isTimeSet
-     *
-     * @param   lang.Object isTimeSet
-     */
-    public function setIsTimeSet($isTimeSet) {
-      $this->isTimeSet= $isTimeSet;
-    }
+  /**
+   * Set lenient
+   *
+   * @param   lang.Object lenient
+   */
+  public function setLenient($lenient) {
+    $this->lenient= $lenient;
+  }
 
-    /**
-     * Get isTimeSet
-     *
-     * @return  lang.Object
-     */
-    public function getIsTimeSet() {
-      return $this->isTimeSet;
-    }
+  /**
+   * Get lenient
+   *
+   * @return  lang.Object
+   */
+  public function getLenient() {
+    return $this->lenient;
+  }
 
-    /**
-     * Set lenient
-     *
-     * @param   lang.Object lenient
-     */
-    public function setLenient($lenient) {
-      $this->lenient= $lenient;
-    }
+  /**
+   * Set fields
+   *
+   * @param   lang.Object fields
+   */
+  public function setFields($fields) {
+    $this->fields= $fields;
+  }
 
-    /**
-     * Get lenient
-     *
-     * @return  lang.Object
-     */
-    public function getLenient() {
-      return $this->lenient;
-    }
+  /**
+   * Get fields
+   *
+   * @return  lang.Object
+   */
+  public function getFields() {
+    return $this->fields;
+  }
 
-    /**
-     * Set fields
-     *
-     * @param   lang.Object fields
-     */
-    public function setFields($fields) {
-      $this->fields= $fields;
-    }
+  /**
+   * Set isSet
+   *
+   * @param   lang.Object isSet
+   */
+  public function setIsSet($isSet) {
+    $this->isSet= $isSet;
+  }
 
-    /**
-     * Get fields
-     *
-     * @return  lang.Object
-     */
-    public function getFields() {
-      return $this->fields;
-    }
+  /**
+   * Get isSet
+   *
+   * @return  lang.Object
+   */
+  public function getIsSet() {
+    return $this->isSet;
+  }
 
-    /**
-     * Set isSet
-     *
-     * @param   lang.Object isSet
-     */
-    public function setIsSet($isSet) {
-      $this->isSet= $isSet;
-    }
+  /**
+   * Set time
+   *
+   * @param   lang.Object time
+   */
+  public function setTime($time) {
+    $this->time= $time;
+  }
 
-    /**
-     * Get isSet
-     *
-     * @return  lang.Object
-     */
-    public function getIsSet() {
-      return $this->isSet;
-    }
+  /**
+   * Get time
+   *
+   * @return  lang.Object
+   */
+  public function getTime() {
+    return $this->time;
+  }
 
-    /**
-     * Set time
-     *
-     * @param   lang.Object time
-     */
-    public function setTime($time) {
-      $this->time= $time;
-    }
+  /**
+   * Set zone
+   *
+   * @param   lang.Object zone
+   */
+  public function setZone($zone) {
+    $this->zone= $zone;
+  }
 
-    /**
-     * Get time
-     *
-     * @return  lang.Object
-     */
-    public function getTime() {
-      return $this->time;
-    }
+  /**
+   * Get zone
+   *
+   * @return  lang.Object
+   */
+  public function getZone() {
+    return $this->zone;
+  }
 
-    /**
-     * Set zone
-     *
-     * @param   lang.Object zone
-     */
-    public function setZone($zone) {
-      $this->zone= $zone;
-    }
-
-    /**
-     * Get zone
-     *
-     * @return  lang.Object
-     */
-    public function getZone() {
-      return $this->zone;
-    }
-
-    /**
-     * Get a date from the GregorianDate
-     *
-     * @return  util.Date
-     */
-    public function toDate() {
-      return new Date($this->getTime()->floatValue() / 1000);
-    }
-  } 
-?>
+  /**
+   * Get a date from the GregorianDate
+   *
+   * @return  util.Date
+   */
+  public function toDate() {
+    return new Date($this->getTime()->floatValue() / 1000);
+  }
+} 

@@ -1,7 +1,5 @@
 <?php namespace net\xp_framework\unittest\remote;
 
-
-
 use util\cmd\Console;
 use util\log\Logger;
 use util\log\FileAppender;
@@ -9,8 +7,8 @@ use peer\server\Server;
 use lang\archive\Archive;
 use lang\archive\ArchiveClassLoader;
 use remote\server\EascProtocol;
+use remote\server\message\EascMessageFactory;
 use remote\server\deploy\scan\DeploymentScanner;
-
 
 /**
  * EASC Server used by IntegrationTest. 
@@ -38,31 +36,31 @@ class TestingServer extends \lang\Object {
   public static function main(array $args) {
 
     // Add shutdown message handler
-    \remote\server\message\EascMessageFactory::setHandler(61, newinstance('remote.server.message.EascMessage', array(), '{
+    EascMessageFactory::setHandler(61, newinstance('remote.server.message.EascMessage', array(), '{
       public function getType() { 
         return 61; 
       }
       public function handle($protocol, $data) {
-        Logger::getInstance()->getCategory()->debug("Shutting down");
-        $protocol->server->terminate= TRUE; 
+        \util\log\Logger::getInstance()->getCategory()->debug("Shutting down");
+        $protocol->server->terminate= true; 
       }
     }')->getClass());
     
     $s= new Server('127.0.0.1', 0);
     try {
       $protocol= new EascProtocol(newinstance('remote.server.deploy.scan.DeploymentScanner', array(), '{
-        private $changed= TRUE;
+        private $changed= true;
 
         public function scanDeployments() {
           $changed= $this->changed;
-          $this->changed= FALSE;
+          $this->changed= false;
           return $changed;
         }
 
         public function getDeployments() {
           $res= "net/xp_framework/unittest/remote/deploy/beans.test.CalculatorBean.xar";
 
-          with ($d= new Deployment($res)); {
+          with ($d= new \remote\server\deploy\Deployment($res)); {
             $d->setClassLoader(new \lang\archive\ArchiveClassLoader(new \lang\archive\Archive(\lang\ClassLoader::getDefault()->getResourceAsStream($res))));
             $d->setImplementation("beans.test.CalculatorBeanImpl");
             $d->setInterface("beans.test.Calculator");

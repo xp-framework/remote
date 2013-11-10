@@ -1,53 +1,46 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server;
 
-  uses(
-    'remote.protocol.XpProtocolConstants',
-    'remote.server.message.EascMessageFactory',
-    'lang.reflect.Proxy'
-  );
+use remote\protocol\XpProtocolConstants;
+use remote\server\message\EascMessageFactory;
+use lang\reflect\Proxy;
+
+/**
+ * Server handler
+ *
+ * @purpose  handler
+ */
+class ServerHandler extends \lang\Object {
+    
+  /**
+   * Set serializer
+   *
+   * @param   remote.protocol.Serializer serializer
+   */
+  public function setSerializer($serializer) {
+    $this->serializer= $serializer;
+  }  
 
   /**
-   * Server handler
+   * Handle incoming data
    *
-   * @purpose  handler
+   * @param   peer.Socket socket
+   * @param   peer.server.ServerProtocol protocol
+   * @param   int type
+   * @param   string data
    */
-  class ServerHandler extends Object {
-      
-    /**
-     * Set serializer
-     *
-     * @param   remote.protocol.Serializer serializer
-     */
-    public function setSerializer($serializer) {
-      $this->serializer= $serializer;
-    }  
-  
-    /**
-     * Handle incoming data
-     *
-     * @param   peer.Socket socket
-     * @param   peer.server.ServerProtocol protocol
-     * @param   int type
-     * @param   string data
-     */
-    public function handle($socket, $protocol, $type, $data) {
-      try {
-        $handler= EascMessageFactory::forType($type);
-        $handler->handle($protocol, $data);
+  public function handle($socket, $protocol, $type, $data) {
+    try {
+      $handler= EascMessageFactory::forType($type);
+      $handler->handle($protocol, $data);
 
-        $response= EascMessageFactory::forType(REMOTE_MSG_VALUE);
-        $response->setValue($handler->getValue());
+      $response= EascMessageFactory::forType(REMOTE_MSG_VALUE);
+      $response->setValue($handler->getValue());
 
-      } catch (Throwable $e) {
-        $response= EascMessageFactory::forType(REMOTE_MSG_EXCEPTION);
-        $response->setValue($e);
-      }
-
-      $protocol->answerWithMessage($socket, $response);
+    } catch (\lang\Throwable $e) {
+      $response= EascMessageFactory::forType(REMOTE_MSG_EXCEPTION);
+      $response->setValue($e);
     }
+
+    $protocol->answerWithMessage($socket, $response);
   }
-?>
+}

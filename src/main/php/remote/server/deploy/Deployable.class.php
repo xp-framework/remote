@@ -1,17 +1,12 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server\deploy;
 
-  /**
-   * Deployable
-   *
-   * @see      xp://remote.server.deploy.Deployment
-   * @see      xp://remote.server.deploy.IncompleteDeployment
-   * @purpose  Interface
-   */
-  interface Deployable {
-  
-  }
-?>
+/**
+ * Deployable
+ *
+ * @see      xp://remote.server.deploy.Deployment
+ * @see      xp://remote.server.deploy.IncompleteDeployment
+ * @purpose  Interface
+ */
+interface Deployable {
+
+}

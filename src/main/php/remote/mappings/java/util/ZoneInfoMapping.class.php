@@ -1,189 +1,185 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\mappings\java\util;
 
-  uses('util.Date');
+use util\Date;
+
+
+/**
+ * Mapping for sun.util.calendar.ZoneInfo
+ *
+ * @purpose  Mapping
+ */
+class ZoneInfoMapping extends \lang\Object {
+
+  var
+    $rawOffset= null,
+    $rawOffsetDiff= null,
+    $checksum= null,
+    $dstSavings= null,
+    $transitions= null,
+    $offsets= null,
+    $simpleTimeZoneParams= null,
+    $willGMTOffsetChange= null,
+    $ID= null;
 
   /**
-   * Mapping for sun.util.calendar.ZoneInfo
+   * Set rawOffset
    *
-   * @purpose  Mapping
+   * @param   lang.Object rawOffset
    */
-  class ZoneInfoMapping extends Object {
+  public function setRawOffset($rawOffset) {
+    $this->rawOffset= $rawOffset;
+  }
 
-    var
-      $rawOffset= NULL,
-      $rawOffsetDiff= NULL,
-      $checksum= NULL,
-      $dstSavings= NULL,
-      $transitions= NULL,
-      $offsets= NULL,
-      $simpleTimeZoneParams= NULL,
-      $willGMTOffsetChange= NULL,
-      $ID= NULL;
+  /**
+   * Get rawOffset
+   *
+   * @return  lang.Object
+   */
+  public function getRawOffset() {
+    return $this->rawOffset;
+  }
 
-    /**
-     * Set rawOffset
-     *
-     * @param   lang.Object rawOffset
-     */
-    public function setRawOffset($rawOffset) {
-      $this->rawOffset= $rawOffset;
-    }
+  /**
+   * Set rawOffsetDiff
+   *
+   * @param   lang.Object rawOffsetDiff
+   */
+  public function setRawOffsetDiff($rawOffsetDiff) {
+    $this->rawOffsetDiff= $rawOffsetDiff;
+  }
 
-    /**
-     * Get rawOffset
-     *
-     * @return  lang.Object
-     */
-    public function getRawOffset() {
-      return $this->rawOffset;
-    }
+  /**
+   * Get rawOffsetDiff
+   *
+   * @return  lang.Object
+   */
+  public function getRawOffsetDiff() {
+    return $this->rawOffsetDiff;
+  }
 
-    /**
-     * Set rawOffsetDiff
-     *
-     * @param   lang.Object rawOffsetDiff
-     */
-    public function setRawOffsetDiff($rawOffsetDiff) {
-      $this->rawOffsetDiff= $rawOffsetDiff;
-    }
+  /**
+   * Set checksum
+   *
+   * @param   lang.Object checksum
+   */
+  public function setChecksum($checksum) {
+    $this->checksum= $checksum;
+  }
 
-    /**
-     * Get rawOffsetDiff
-     *
-     * @return  lang.Object
-     */
-    public function getRawOffsetDiff() {
-      return $this->rawOffsetDiff;
-    }
+  /**
+   * Get checksum
+   *
+   * @return  lang.Object
+   */
+  public function getChecksum() {
+    return $this->checksum;
+  }
 
-    /**
-     * Set checksum
-     *
-     * @param   lang.Object checksum
-     */
-    public function setChecksum($checksum) {
-      $this->checksum= $checksum;
-    }
+  /**
+   * Set dstSavings
+   *
+   * @param   lang.Object dstSavings
+   */
+  public function setDstSavings($dstSavings) {
+    $this->dstSavings= $dstSavings;
+  }
 
-    /**
-     * Get checksum
-     *
-     * @return  lang.Object
-     */
-    public function getChecksum() {
-      return $this->checksum;
-    }
+  /**
+   * Get dstSavings
+   *
+   * @return  lang.Object
+   */
+  public function getDstSavings() {
+    return $this->dstSavings;
+  }
 
-    /**
-     * Set dstSavings
-     *
-     * @param   lang.Object dstSavings
-     */
-    public function setDstSavings($dstSavings) {
-      $this->dstSavings= $dstSavings;
-    }
+  /**
+   * Set transitions
+   *
+   * @param   lang.Object transitions
+   */
+  public function setTransitions($transitions) {
+    $this->transitions= $transitions;
+  }
 
-    /**
-     * Get dstSavings
-     *
-     * @return  lang.Object
-     */
-    public function getDstSavings() {
-      return $this->dstSavings;
-    }
+  /**
+   * Get transitions
+   *
+   * @return  lang.Object
+   */
+  public function getTransitions() {
+    return $this->transitions;
+  }
 
-    /**
-     * Set transitions
-     *
-     * @param   lang.Object transitions
-     */
-    public function setTransitions($transitions) {
-      $this->transitions= $transitions;
-    }
+  /**
+   * Set offsets
+   *
+   * @param   lang.Object offsets
+   */
+  public function setOffsets($offsets) {
+    $this->offsets= $offsets;
+  }
 
-    /**
-     * Get transitions
-     *
-     * @return  lang.Object
-     */
-    public function getTransitions() {
-      return $this->transitions;
-    }
+  /**
+   * Get offsets
+   *
+   * @return  lang.Object
+   */
+  public function getOffsets() {
+    return $this->offsets;
+  }
 
-    /**
-     * Set offsets
-     *
-     * @param   lang.Object offsets
-     */
-    public function setOffsets($offsets) {
-      $this->offsets= $offsets;
-    }
+  /**
+   * Set simpleTimeZoneParams
+   *
+   * @param   lang.Object simpleTimeZoneParams
+   */
+  public function setSimpleTimeZoneParams($simpleTimeZoneParams) {
+    $this->simpleTimeZoneParams= $simpleTimeZoneParams;
+  }
 
-    /**
-     * Get offsets
-     *
-     * @return  lang.Object
-     */
-    public function getOffsets() {
-      return $this->offsets;
-    }
+  /**
+   * Get simpleTimeZoneParams
+   *
+   * @return  lang.Object
+   */
+  public function getSimpleTimeZoneParams() {
+    return $this->simpleTimeZoneParams;
+  }
 
-    /**
-     * Set simpleTimeZoneParams
-     *
-     * @param   lang.Object simpleTimeZoneParams
-     */
-    public function setSimpleTimeZoneParams($simpleTimeZoneParams) {
-      $this->simpleTimeZoneParams= $simpleTimeZoneParams;
-    }
+  /**
+   * Set willGMTOffsetChange
+   *
+   * @param   lang.Object willGMTOffsetChange
+   */
+  public function setWillGMTOffsetChange($willGMTOffsetChange) {
+    $this->willGMTOffsetChange= $willGMTOffsetChange;
+  }
 
-    /**
-     * Get simpleTimeZoneParams
-     *
-     * @return  lang.Object
-     */
-    public function getSimpleTimeZoneParams() {
-      return $this->simpleTimeZoneParams;
-    }
+  /**
+   * Get willGMTOffsetChange
+   *
+   * @return  lang.Object
+   */
+  public function getWillGMTOffsetChange() {
+    return $this->willGMTOffsetChange;
+  }
 
-    /**
-     * Set willGMTOffsetChange
-     *
-     * @param   lang.Object willGMTOffsetChange
-     */
-    public function setWillGMTOffsetChange($willGMTOffsetChange) {
-      $this->willGMTOffsetChange= $willGMTOffsetChange;
-    }
+  /**
+   * Set ID
+   *
+   * @param   lang.Object ID
+   */
+  public function setID($ID) {
+    $this->ID= $ID;
+  }
 
-    /**
-     * Get willGMTOffsetChange
-     *
-     * @return  lang.Object
-     */
-    public function getWillGMTOffsetChange() {
-      return $this->willGMTOffsetChange;
-    }
-
-    /**
-     * Set ID
-     *
-     * @param   lang.Object ID
-     */
-    public function setID($ID) {
-      $this->ID= $ID;
-    }
-
-    /**
-     * Get ID
-     *
-     * @return  lang.Object
-     */
-    public function getID() {
-      return $this->ID;
-    }
-  } 
-?>
+  /**
+   * Get ID
+   *
+   * @return  lang.Object
+   */
+  public function getID() {
+    return $this->ID;
+  }
+} 

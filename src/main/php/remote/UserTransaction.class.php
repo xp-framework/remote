@@ -1,33 +1,28 @@
-<?php
-/* This class is part of the XP framework
+<?php namespace remote;
+
+/**
+ * Remote transaction
  *
- * $Id$ 
+ * @see      xp://remote.Remote#begin
+ * @purpose  Transaction
  */
+class UserTransaction extends \lang\Object {
+  public
+    $_handler= null;
 
   /**
-   * Remote transaction
+   * Commit this transaction
    *
-   * @see      xp://remote.Remote#begin
-   * @purpose  Transaction
    */
-  class UserTransaction extends Object {
-    public
-      $_handler= NULL;
-
-    /**
-     * Commit this transaction
-     *
-     */
-    public function commit() {
-      $this->_handler->commit($this);
-    }
-    
-    /**
-     * Rollback this transaction
-     *
-     */
-    public function rollback() {
-      $this->_handler->rollback($this);
-    }  
+  public function commit() {
+    $this->_handler->commit($this);
   }
-?>
+  
+  /**
+   * Rollback this transaction
+   *
+   */
+  public function rollback() {
+    $this->_handler->rollback($this);
+  }  
+}

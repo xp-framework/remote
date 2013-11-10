@@ -1,31 +1,27 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server\deploy\scan;
 
-  uses('remote.server.deploy.Deployment');
+use remote\server\deploy\Deployment;
+
+
+/**
+ * Deployment scanner
+ *
+ * @purpose  Interface
+ */
+interface DeploymentScanner {
 
   /**
-   * Deployment scanner
+   * Scan if deployments changed
    *
-   * @purpose  Interface
+   * @return  bool 
    */
-  interface DeploymentScanner {
-  
-    /**
-     * Scan if deployments changed
-     *
-     * @return  bool 
-     */
-    public function scanDeployments();
+  public function scanDeployments();
 
-    /**
-     * Get a list of deployments
-     *
-     * @return  remote.server.deploy.Deployable[]
-     */
-    public function getDeployments();
+  /**
+   * Get a list of deployments
+   *
+   * @return  remote.server.deploy.Deployable[]
+   */
+  public function getDeployments();
 
-  }
-?>
+}

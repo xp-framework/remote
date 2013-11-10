@@ -1,52 +1,48 @@
-<?php
-/* This class is part of the XP framework
- *
- * $Id$ 
- */
+<?php namespace remote\server;
 
-  uses('lang.reflect.InvocationHandler');
+use lang\reflect\InvocationHandler;
+
+
+/**
+ * Invocation handler for stateless
+ * session beans
+ *
+ * @purpose  invocationhandler
+ */
+class StatelessSessionBeanContainerInvocationHandler extends \lang\Object implements InvocationHandler {
+  public
+    $container  = null,
+    $type       = null;
+  
+  /**
+   * Set container
+   *
+   * @param   remote.server.BeanContainer container
+   */
+  public function setContainer($container) {
+    $this->container= $container;
+  }
+  
+  /**
+   * Set type
+   *
+   * @param   int type
+   */
+  public function setType($type) {
+    $this->type= $type;
+  }
 
   /**
-   * Invocation handler for stateless
-   * session beans
+   * Processes a method invocation on a proxy instance and returns
+   * the result.
    *
-   * @purpose  invocationhandler
+   * @param   lang.reflect.Proxy proxy
+   * @param   string method the method name
+   * @param   var args an array of arguments
+   * @return  var
    */
-  class StatelessSessionBeanContainerInvocationHandler extends Object implements InvocationHandler {
-    public
-      $container  = NULL,
-      $type       = NULL;
-    
-    /**
-     * Set container
-     *
-     * @param   remote.server.BeanContainer container
-     */
-    public function setContainer($container) {
-      $this->container= $container;
-    }
-    
-    /**
-     * Set type
-     *
-     * @param   int type
-     */
-    public function setType($type) {
-      $this->type= $type;
-    }
+  public function invoke($proxy, $method, $args) {
+    return $this->container->invoke($method, $args);
+  }
 
-    /**
-     * Processes a method invocation on a proxy instance and returns
-     * the result.
-     *
-     * @param   lang.reflect.Proxy proxy
-     * @param   string method the method name
-     * @param   var args an array of arguments
-     * @return  var
-     */
-    public function invoke($proxy, $method, $args) {
-      return $this->container->invoke($method, $args);
-    }
-
-  } 
-?>
+} 
