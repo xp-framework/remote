@@ -377,8 +377,8 @@ abstract class SerializerTest extends \unittest\TestCase {
 
     // Both must be serialized with the FOO mapping, because both are Foo or Foo-derived objects.
     $this->serializer->mapping('FOO', newinstance('remote.protocol.SerializerMapping', array(), '{
-      function handledClass() { return XPClass::forName("net.xp_framework.unittest.remote.FooClass"); }
-      function representationOf($serializer, $value, $context= array()) { return "FOO:"; }
+      public function handledClass() { return \lang\XPClass::forName("net.xp_framework.unittest.remote.FooClass"); }
+      public function representationOf($serializer, $value, $context= array()) { return "FOO:"; }
       public function valueOf($serializer, $serialized, $context= array()) { return NULL; }
     }'));
     $this->assertEquals('FOO:', $this->serialize(new FooClass()));
@@ -388,9 +388,9 @@ abstract class SerializerTest extends \unittest\TestCase {
     // Add more concrete mapping for BAR. Foo must still be serialized with FOO, but the BarClass-object
     // has a better matching mapping.
     $this->serializer->mapping('BAR', newinstance('remote.protocol.SerializerMapping', array(), '{
-      function handledClass() { return XPClass::forName("net.xp_framework.unittest.remote.BarClass"); }
-      function representationOf($serializer, $value, $context= array()) { return "BAR:"; }
-      function valueOf($serializer, $serialized, $context= array()) { return NULL; }
+      public function handledClass() { return \lang\XPClass::forName("net.xp_framework.unittest.remote.BarClass"); }
+      public function representationOf($serializer, $value, $context= array()) { return "BAR:"; }
+      public function valueOf($serializer, $serialized, $context= array()) { return NULL; }
     }'));
     $this->assertEquals('FOO:', $this->serialize(new FooClass()));
     $this->assertEquals('BAR:', $this->serialize(new BarClass()));

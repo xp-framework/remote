@@ -1,29 +1,25 @@
 <?php namespace remote;
 
-
+use lang\XPClass;
+use remote\protocol\UnknownProtocolException;
 
 /**
  * Handler factory implementation. Registers the default protocol "xp" with this
  * factory.
  *
- * @see      xp://remote.protocol.XpProtocolHandler
- * @purpose  Factory
+ * @see   xp://remote.protocol.XpProtocolHandler
  */
 class HandlerFactory extends \lang\Object {
-  protected static 
-    $instance     = null;
-
-  public
-    $handlers= array();
+  protected static $instance= null;
+  public $handlers= array();
 
   static function __static() {
     self::$instance= new self();
-    self::$instance->register('xp', \lang\XPClass::forName('remote.protocol.XpProtocolHandler'));
+    self::$instance->register('xp', XPClass::forName('remote.protocol.XpProtocolHandler'));
   }
 
   /**
    * Constructor.
-   *
    */
   protected function __construct() {
   }

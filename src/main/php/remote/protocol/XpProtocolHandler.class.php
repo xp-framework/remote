@@ -3,12 +3,10 @@
 use peer\BSDSocket;
 use remote\RemoteInvocationHandler;
 
-
 /**
  * Handles the "XP" protocol
  *
  * @see      xp://remote.protocol.ProtocolHandler
- * @purpose  Protocol Handler
  */
 class XpProtocolHandler extends \lang\Object implements ProtocolHandler {
   public
@@ -20,6 +18,10 @@ class XpProtocolHandler extends \lang\Object implements ProtocolHandler {
   
   public
     $_sock= null;  
+
+  static function __static() {
+    \lang\XPClass::forName('remote.protocol.XpProtocolConstants');
+  }
 
   /**
    * Constructor
@@ -270,12 +272,12 @@ class XpProtocolHandler extends \lang\Object implements ProtocolHandler {
         case REMOTE_MSG_VALUE:
           $data= ByteCountedString::readFrom($this->_sock);
           $this->cat && $this->cat->debug('<<< Response:', addcslashes($data, "\0..\37!@\177..\377"));
-          return $this->serializer->valueOf(new \SerializedData($data), $ctx);
+          return $this->serializer->valueOf(new SerializedData($data), $ctx);
 
         case REMOTE_MSG_EXCEPTION:
           $data= ByteCountedString::readFrom($this->_sock);
           $this->cat && $this->cat->debug('<<< Response:', addcslashes($data, "\0..\37!@\177..\377"));
-          $reference= $this->serializer->valueOf(new \SerializedData($data), $ctx);
+          $reference= $this->serializer->valueOf(new SerializedData($data), $ctx);
           if ($reference instanceof \remote\RemoteException) {
             throw $reference;
           } else if ($reference instanceof \remote\ExceptionReference) {

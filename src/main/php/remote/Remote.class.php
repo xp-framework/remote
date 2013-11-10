@@ -1,7 +1,5 @@
 <?php namespace remote;
 
-
-
 /**
  * Entry class for all remote operations
  *
@@ -27,11 +25,9 @@
  * 
  * @test     xp://net.xp_framework.unittest.remote.RemoteTest
  * @see      xp://remote.HandlerFactory
- * @purpose  RMI
  */
 class Remote extends \lang\Object {
-  public
-    $_handler       = null;
+  public $_handler= null;
 
   /**
    * Returns a string representation of this object
@@ -65,10 +61,10 @@ class Remote extends \lang\Object {
       try {
         $instance= new self();
         $instance->_handler= $pool->acquire($key, true);
-      } catch (\RemoteException $e) {
+      } catch (RemoteException $e) {
         continue;   // try next
       } catch (\lang\XPException $e) {
-        $e= new \RemoteException($e->getMessage(), $e);
+        $e= new RemoteException($e->getMessage(), $e);
         continue;   // try next
       }
 

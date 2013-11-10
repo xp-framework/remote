@@ -1,12 +1,12 @@
 <?php namespace net\xp_framework\unittest\remote;
 
 use net\xp_framework\unittest\StartServer;
-use unittest\TestCase;
-use lang\Process;
-use lang\Runtime;
 use peer\Socket;
-use lang\archive\Archive;
 use remote\Remote;
+use lang\XPClass;
+use lang\ClassLoader;
+use lang\archive\ArchiveClassLoader;
+use lang\archive\Archive;
 
 /**
  * TestCase for Remote API
@@ -14,13 +14,10 @@ use remote\Remote;
  * @see      xp://remote.Remote
  */
 #[@action(new StartServer('net.xp_framework.unittest.remote.TestingServer', 'connected', 'shutdown'))]
-class IntegrationTest extends TestCase {
-  protected static
-    $bindAddress          = array(null, -1),
-    $clientClassesLoader  = null;
-
-  protected
-    $remote= null;
+class IntegrationTest extends \unittest\TestCase {
+  protected static $bindAddress= array(null, -1);
+  protected static $clientClassesLoader= null;
+  protected $remote= null;
 
   /**
    * Callback for when server is connected
@@ -51,7 +48,7 @@ class IntegrationTest extends TestCase {
       ->getPackage('deploy')
       ->getResourceAsStream('beans.test.CalculatorBean.xar')
     ;
-    self::$clientClassesLoader= \lang\ClassLoader::registerLoader(new \lang\archive\ArchiveClassLoader(new Archive($a)));
+    self::$clientClassesLoader= ClassLoader::registerLoader(new ArchiveClassLoader(new Archive($a)));
   }
   
   /**
@@ -59,7 +56,7 @@ class IntegrationTest extends TestCase {
    */
   #[@afterClass]
   public static function removeClientClassLoader() {
-    self::$clientClassesLoader && \lang\ClassLoader::removeLoader(self::$clientClassesLoader);
+    self::$clientClassesLoader && ClassLoader::removeLoader(self::$clientClassesLoader);
   }
   
   /**
@@ -89,10 +86,6 @@ class IntegrationTest extends TestCase {
     $this->assertEquals(3, $this->remote->lookup('xp/test/Calculator')->add(1, 2));
   }
 
-  /**
-   * Test calling a method
-   *
-   */
   #[@test, @ignore('Integers serialized to primitive ints')]
   public function addIntegersMethod() {
     $this->assertEquals(
@@ -101,10 +94,6 @@ class IntegrationTest extends TestCase {
     );
   }
 
-  /**
-   * Test calling a method
-   *
-   */
   #[@test]
   public function addComplexNumbers() {
     $complex= self::$clientClassesLoader->loadClass('beans.test.Complex');
@@ -114,21 +103,11 @@ class IntegrationTest extends TestCase {
     );
   }
 
-  /**
-   * Test calling a method with incorrect argument types raises
-   * an IllegalArgumentException (this is done on the client-side
-   * already)
-   *
-   */
   #[@test, @expect('lang.IllegalArgumentException')]
   public function addIntegersMethodWithIncorrectArguments() {
     $this->remote->lookup('xp/test/Calculator')->addIntegers(1, new \lang\types\Integer(2));
   }
 
-  /**
-   * Test calling a method
-   *
-   */
   #[@test, @expect(class = 'lang.Error', withMessage= '/Call to undefined method .+::doesNotExist()/')]
   public function callNonExistantMethod() {
     $this->remote->lookup('xp/test/Calculator')->doesNotExist();
