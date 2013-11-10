@@ -1,4 +1,4 @@
-<?php namespace net\xp_framework\unittest\remote;
+<?php namespace remote\unittest;
 
 use remote\protocol\Serializer;
 use remote\protocol\SerializedStream;

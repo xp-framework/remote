@@ -1,4 +1,4 @@
-<?php namespace net\xp_framework\unittest\remote;
+<?php namespace remote\unittest;
 
 use unittest\TestCase;
 use remote\Remote;
@@ -24,7 +24,7 @@ class RemoteTest extends TestCase {
   static function __static() {
     HandlerFactory::getInstance()->register(
       'mock', 
-      \lang\XPClass::forName('net.xp_framework.unittest.remote.MockProtocolHandler')
+      \lang\XPClass::forName('remote.unittest.MockProtocolHandler')
     );
   }
   
@@ -53,7 +53,7 @@ class RemoteTest extends TestCase {
   #[@test]
   public function mockHandler() {
     foreach ($this->handler as $handler) {
-      $this->assertClass($handler, 'net.xp_framework.unittest.remote.MockProtocolHandler');
+      $this->assertClass($handler, 'remote.unittest.MockProtocolHandler');
     }
   }
   

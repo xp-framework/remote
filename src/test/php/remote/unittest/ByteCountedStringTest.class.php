@@ -1,4 +1,4 @@
-<?php namespace net\xp_framework\unittest\remote;
+<?php namespace remote\unittest;
 
 use unittest\TestCase;
 use io\streams\MemoryOutputStream;
@@ -18,7 +18,7 @@ class ByteCountedStringTest extends TestCase {
 
   #[@beforeClass]
   public static function defineMockSocket() {
-    self::$mockSocket= \lang\ClassLoader::defineClass('net.xp_framework.unittest.remote.MockSocket', 'lang.Object', array(), '{
+    self::$mockSocket= \lang\ClassLoader::defineClass('remote.unittest.MockSocket', 'lang.Object', array(), '{
       public function __construct($bytes) {
         $this->bytes= $bytes;
         $this->offset= 0;

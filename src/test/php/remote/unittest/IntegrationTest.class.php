@@ -1,4 +1,4 @@
-<?php namespace net\xp_framework\unittest\remote;
+<?php namespace remote\unittest;
 
 use net\xp_framework\unittest\StartServer;
 use peer\Socket;
@@ -13,7 +13,7 @@ use lang\archive\Archive;
  *
  * @see      xp://remote.Remote
  */
-#[@action(new StartServer('net.xp_framework.unittest.remote.TestingServer', 'connected', 'shutdown'))]
+#[@action(new StartServer('remote.unittest.TestingServer', 'connected', 'shutdown'))]
 class IntegrationTest extends \unittest\TestCase {
   protected static $bindAddress= array(null, -1);
   protected static $clientClassesLoader= null;

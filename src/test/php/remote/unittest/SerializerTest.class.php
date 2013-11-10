@@ -1,4 +1,4 @@
-<?php namespace net\xp_framework\unittest\remote;
+<?php namespace remote\unittest;
 
 use remote\protocol\Serializer;
 use remote\protocol\RemoteInterfaceMapping;
@@ -151,7 +151,7 @@ abstract class SerializerTest extends \unittest\TestCase {
   #[@test]
   public function representationOfValueObject() {
     $this->assertEquals(
-      'O:39:"net.xp_framework.unittest.remote.Person":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";}',
+      'O:22:"remote.unittest.Person":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";}',
       $this->serialize(new Person())
     );
   }
@@ -163,7 +163,7 @@ abstract class SerializerTest extends \unittest\TestCase {
    */
   #[@test]
   public function representationOfMappedValueObject() {
-    $this->serializer->mapPackage('remote', \lang\reflect\Package::forName('net.xp_framework.unittest.remote'));
+    $this->serializer->mapPackage('remote', \lang\reflect\Package::forName('remote.unittest'));
     $this->assertEquals(
       'O:13:"remote.Person":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";}',
       $this->serialize(new Person())
@@ -173,8 +173,8 @@ abstract class SerializerTest extends \unittest\TestCase {
   #[@test]
   public function representationOfEnum() {
     $this->assertEquals(
-      'O:37:"net.xp_framework.unittest.remote.Enum":1:{s:4:"name";s:6:"Value1";}',
-      $this->serialize(\net\xp_framework\unittest\remote\Enum::$Value1)
+      'O:20:"remote.unittest.Enum":1:{s:4:"name";s:6:"Value1";}',
+      $this->serialize(\remote\unittest\Enum::$Value1)
     );
   }
 
@@ -249,10 +249,10 @@ abstract class SerializerTest extends \unittest\TestCase {
 
   #[@test]
   public function valueOfEnum() {
-    $obj= $this->unserialize('O:37:"net.xp_framework.unittest.remote.Enum":1:{s:4:"name";s:6:"Value1";};');
-    $this->assertEquals(\net\xp_framework\unittest\remote\Enum::$Value1, $obj);
-    $this->assertEquals(\net\xp_framework\unittest\remote\Enum::$Value1->ordinal(), $obj->ordinal());
-    $this->assertEquals(\net\xp_framework\unittest\remote\Enum::$Value1->name(), $obj->name());
+    $obj= $this->unserialize('O:20:"remote.unittest.Enum":1:{s:4:"name";s:6:"Value1";};');
+    $this->assertEquals(\remote\unittest\Enum::$Value1, $obj);
+    $this->assertEquals(\remote\unittest\Enum::$Value1->ordinal(), $obj->ordinal());
+    $this->assertEquals(\remote\unittest\Enum::$Value1->name(), $obj->name());
   }
 
   /**
@@ -262,9 +262,9 @@ abstract class SerializerTest extends \unittest\TestCase {
    */
   #[@test]
   public function valueOfUnknownObject() {
-    $obj= $this->unserialize('O:40:"net.xp_framework.unittest.remote.Unknown":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";};');
+    $obj= $this->unserialize('O:23:"remote.unittest.Unknown":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";};');
     $this->assertClass($obj, 'remote.UnknownRemoteObject');
-    $this->assertEquals('net.xp_framework.unittest.remote.Unknown', $obj->__name);
+    $this->assertEquals('remote.unittest.Unknown', $obj->__name);
     $this->assertEquals(1549, $obj->__members['id']);
     $this->assertEquals('Timm Friebe', $obj->__members['name']);
   }
@@ -300,7 +300,7 @@ abstract class SerializerTest extends \unittest\TestCase {
   #[@test]
   public function valueOfArrayList() {
     $return= $this->unserialize(
-      'A:2:{O:39:"net.xp_framework.unittest.remote.Person":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";}s:5:"World";}'
+      'A:2:{O:22:"remote.unittest.Person":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";}s:5:"World";}'
     );
     $this->assertClass($return, 'lang.types.ArrayList');
     $this->assertEquals(2, $return->length);
@@ -370,14 +370,14 @@ abstract class SerializerTest extends \unittest\TestCase {
    */
   #[@test]
   public function bestMapping() {
-    $fooClass= \lang\ClassLoader::defineClass('net.xp_framework.unittest.remote.FooClass', 'lang.Object', null);
-    $barClass= \lang\ClassLoader::defineClass('net.xp_framework.unittest.remote.BarClass', 'FooClass', null);
-    $bazClass= \lang\ClassLoader::defineClass('net.xp_framework.unittest.remote.BazClass', 'BarClass', null);
-    $bazookaClass= \lang\ClassLoader::defineClass('net.xp_framework.unittest.remote.BazookaClass', 'BazClass', null);
+    $fooClass= \lang\ClassLoader::defineClass('remote.unittest.FooClass', 'lang.Object', null);
+    $barClass= \lang\ClassLoader::defineClass('remote.unittest.BarClass', 'FooClass', null);
+    $bazClass= \lang\ClassLoader::defineClass('remote.unittest.BazClass', 'BarClass', null);
+    $bazookaClass= \lang\ClassLoader::defineClass('remote.unittest.BazookaClass', 'BazClass', null);
 
     // Both must be serialized with the FOO mapping, because both are Foo or Foo-derived objects.
     $this->serializer->mapping('FOO', newinstance('remote.protocol.SerializerMapping', array(), '{
-      public function handledClass() { return \lang\XPClass::forName("net.xp_framework.unittest.remote.FooClass"); }
+      public function handledClass() { return \lang\XPClass::forName("remote.unittest.FooClass"); }
       public function representationOf($serializer, $value, $context= array()) { return "FOO:"; }
       public function valueOf($serializer, $serialized, $context= array()) { return NULL; }
     }'));
@@ -388,7 +388,7 @@ abstract class SerializerTest extends \unittest\TestCase {
     // Add more concrete mapping for BAR. Foo must still be serialized with FOO, but the BarClass-object
     // has a better matching mapping.
     $this->serializer->mapping('BAR', newinstance('remote.protocol.SerializerMapping', array(), '{
-      public function handledClass() { return \lang\XPClass::forName("net.xp_framework.unittest.remote.BarClass"); }
+      public function handledClass() { return \lang\XPClass::forName("remote.unittest.BarClass"); }
       public function representationOf($serializer, $value, $context= array()) { return "BAR:"; }
       public function valueOf($serializer, $serialized, $context= array()) { return NULL; }
     }'));

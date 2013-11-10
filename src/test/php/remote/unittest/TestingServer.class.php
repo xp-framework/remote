@@ -1,4 +1,4 @@
-<?php namespace net\xp_framework\unittest\remote;
+<?php namespace remote\unittest;
 
 use util\cmd\Console;
 use util\log\Logger;
@@ -58,7 +58,7 @@ class TestingServer extends \lang\Object {
         }
 
         public function getDeployments() {
-          $res= "net/xp_framework/unittest/remote/deploy/beans.test.CalculatorBean.xar";
+          $res= "remote/unittest/deploy/beans.test.CalculatorBean.xar";
 
           with ($d= new \remote\server\deploy\Deployment($res)); {
             $d->setClassLoader(new \lang\archive\ArchiveClassLoader(new \lang\archive\Archive(\lang\ClassLoader::getDefault()->getResourceAsStream($res))));
