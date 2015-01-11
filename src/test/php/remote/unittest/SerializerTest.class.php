@@ -31,6 +31,8 @@ abstract class SerializerTest extends \unittest\TestCase {
 
   /**
    * Setup testcase
+   *
+   * @return void
    */
   public function setUp() {
     $this->serializer= new Serializer();
@@ -263,7 +265,7 @@ abstract class SerializerTest extends \unittest\TestCase {
   #[@test]
   public function valueOfUnknownObject() {
     $obj= $this->unserialize('O:23:"remote.unittest.Unknown":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";};');
-    $this->assertClass($obj, 'remote.UnknownRemoteObject');
+    $this->assertInstanceOf('remote.UnknownRemoteObject', $obj);
     $this->assertEquals('remote.unittest.Unknown', $obj->__name);
     $this->assertEquals(1549, $obj->__members['id']);
     $this->assertEquals('Timm Friebe', $obj->__members['name']);
@@ -278,12 +280,12 @@ abstract class SerializerTest extends \unittest\TestCase {
       's:5:"cause";N;'.
       '}'
     );
-    $this->assertClass($exception, 'remote.ExceptionReference');
+    $this->assertInstanceOf('remote.ExceptionReference', $exception);
     $this->assertEquals('java.lang.reflect.UndeclaredThrowableException', $exception->referencedClassname);
     $this->assertEquals('*** BLAM ***', $exception->getMessage());
     with ($trace= $exception->getStackTrace()); {
       $this->assertEquals(1, sizeof($trace));
-      $this->assertClass($trace[0], 'remote.RemoteStackTraceElement');
+      $this->assertInstanceOf('remote.RemoteStackTraceElement', $trace[0]);
       $this->assertEquals('Test.java', $trace[0]->file);
       $this->assertEquals('Test', $trace[0]->class);
       $this->assertEquals('main', $trace[0]->method);
@@ -302,7 +304,7 @@ abstract class SerializerTest extends \unittest\TestCase {
     $return= $this->unserialize(
       'A:2:{O:22:"remote.unittest.Person":2:{s:2:"id";i:1549;s:4:"name";s:11:"Timm Friebe";}s:5:"World";}'
     );
-    $this->assertClass($return, 'lang.types.ArrayList');
+    $this->assertInstanceOf('lang.types.ArrayList', $return);
     $this->assertEquals(2, $return->length);
     $this->assertEquals(new Person(), $return[0]);
     $this->assertEquals('World', $return[1]);
@@ -359,8 +361,8 @@ abstract class SerializerTest extends \unittest\TestCase {
       array('handler' => 'remote.protocol.XPProtocolHandler')
     );
 
-    $this->assertSubclass($class, 'lang.reflect.Proxy');
-    $this->assertSubclass($class, 'remote.beans.BeanInterface');
+    $this->assertInstanceOf('lang.reflect.Proxy', $class);
+    $this->assertInstanceOf('remote.beans.BeanInterface', $class);
   }
 
   /**
@@ -371,9 +373,9 @@ abstract class SerializerTest extends \unittest\TestCase {
   #[@test]
   public function bestMapping() {
     $fooClass= \lang\ClassLoader::defineClass('remote.unittest.FooClass', 'lang.Object', null);
-    $barClass= \lang\ClassLoader::defineClass('remote.unittest.BarClass', 'FooClass', null);
-    $bazClass= \lang\ClassLoader::defineClass('remote.unittest.BazClass', 'BarClass', null);
-    $bazookaClass= \lang\ClassLoader::defineClass('remote.unittest.BazookaClass', 'BazClass', null);
+    $barClass= \lang\ClassLoader::defineClass('remote.unittest.BarClass', 'remote.unittest.FooClass', null);
+    $bazClass= \lang\ClassLoader::defineClass('remote.unittest.BazClass', 'remote.unittest.BarClass', null);
+    $bazookaClass= \lang\ClassLoader::defineClass('remote.unittest.BazookaClass', 'remote.unittest.BazClass', null);
 
     // Both must be serialized with the FOO mapping, because both are Foo or Foo-derived objects.
     $this->serializer->mapping('FOO', newinstance('remote.protocol.SerializerMapping', array(), '{

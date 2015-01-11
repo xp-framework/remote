@@ -72,8 +72,7 @@ class IntegrationTest extends \unittest\TestCase {
   
   #[@test]
   public function lookup_calculator() {
-    $calc= $this->remote->lookup('xp/test/Calculator');
-    $this->assertSubclass($calc, 'beans.test.Calculator');
+    $this->assertInstanceOf('beans.test.Calculator', $this->remote->lookup('xp/test/Calculator'));
   }
 
   #[@test, @expect('remote.RemoteException')]

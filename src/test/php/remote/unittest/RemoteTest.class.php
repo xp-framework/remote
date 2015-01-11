@@ -53,7 +53,7 @@ class RemoteTest extends TestCase {
   #[@test]
   public function mockHandler() {
     foreach ($this->handler as $handler) {
-      $this->assertClass($handler, 'remote.unittest.MockProtocolHandler');
+      $this->assertInstanceOf('remote.unittest.MockProtocolHandler', $handler);
     }
   }
   

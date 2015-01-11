@@ -62,7 +62,7 @@ class ByteCountedStringTest extends TestCase {
   public function length_of_single_chunk_with_umlaut() {
     $this->assertEquals(
       self::$CHUNK_HEADER + 2, 
-      create(new ByteCountedString('ä'))->length(self::$CHUNK_LENGTH)
+      create(new ByteCountedString('Ã¤'))->length(self::$CHUNK_LENGTH)
     );
   }
 
@@ -147,7 +147,7 @@ class ByteCountedStringTest extends TestCase {
   public function write_single_chunk_with_umlaut() {
     $this->assertWrittenEquals(
       "\x00\x02\x00\xc3\xa4",
-      new ByteCountedString('ä')
+      new ByteCountedString('Ã¤')
     );
   }
 
@@ -230,7 +230,7 @@ class ByteCountedStringTest extends TestCase {
    */
   #[@test]
   public function read_single_chunk_with_umlaut() {
-    $this->assertReadEquals('ä', "\x00\x02\x00\xc3\xa4");
+    $this->assertReadEquals('Ã¤', "\x00\x02\x00\xc3\xa4");
   }
 
   /**
