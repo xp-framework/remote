@@ -54,6 +54,3 @@ $facade= Remote::forName('xp://middleware.example.com:6448')
 $customer= $facade->getByCustomerNumber(new Long(1861822));
 ```
 
-See also
---------
-http://news.planet-xp.net/category/11/EASC/
