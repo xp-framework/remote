@@ -6,7 +6,6 @@ use io\Folder;
 use util\Properties;
 use remote\server\deploy\IncompleteDeployment;
 
-
 /**
  * Deployment scanner that as
  *
@@ -79,7 +78,7 @@ class FileSystemScanner extends \lang\Object implements DeploymentScanner {
       $this->deployments[$entry]= $d; 
       $this->files[$entry]= time();
 
-      delete($f);
+      unset($f);
     }
     
     // Check existing deployments
@@ -92,7 +91,7 @@ class FileSystemScanner extends \lang\Object implements DeploymentScanner {
         $this->changed= true;
       }
 
-      delete($f);
+      unset($f);
     }
 
     $this->folder->close();
