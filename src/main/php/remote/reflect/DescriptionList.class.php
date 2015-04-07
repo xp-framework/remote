@@ -3,12 +3,10 @@
 /**
  * List of BeanDescription objects
  *
- * @see      xp://remote.reflect.BeanDescription
- * @purpose  Wrapper
+ * @see   xp://remote.reflect.BeanDescription
  */
 class DescriptionList extends \lang\Object {
-  public
-    $beans= array();
+  public $beans= [];
     
   /**
    * Returns a list of all beans
@@ -35,9 +33,6 @@ class DescriptionList extends \lang\Object {
    * @return  remote.reflect.BeanDescription or NULL if nothing is found
    */
   public function bean($name) {
-    if (!isset($this->beans[$name])) {
-      return \xp::null();
-    }
-    return $this->beans[$name];
+    return isset($this->beans[$name]) ? $this->beans[$name] : null;
   }
 }
