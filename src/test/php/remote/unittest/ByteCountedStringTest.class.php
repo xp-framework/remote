@@ -39,7 +39,7 @@ class ByteCountedStringTest extends TestCase {
    */
   #[@test]
   public function empty_bstring_length() {
-    $this->assertEquals(3, create(new ByteCountedString())->length());
+    $this->assertEquals(3, (new ByteCountedString())->length());
   }
 
   /**
@@ -50,7 +50,7 @@ class ByteCountedStringTest extends TestCase {
   public function length_of_single_chunk() {
     $this->assertEquals(
       self::$CHUNK_HEADER + self::$CHUNK_LENGTH, 
-      create(new ByteCountedString(self::$CHUNK_STRING))->length(self::$CHUNK_LENGTH)
+      (new ByteCountedString(self::$CHUNK_STRING))->length(self::$CHUNK_LENGTH)
     );
   }
 
@@ -62,7 +62,7 @@ class ByteCountedStringTest extends TestCase {
   public function length_of_single_chunk_with_umlaut() {
     $this->assertEquals(
       self::$CHUNK_HEADER + 2, 
-      create(new ByteCountedString('ä'))->length(self::$CHUNK_LENGTH)
+      (new ByteCountedString('ä'))->length(self::$CHUNK_LENGTH)
     );
   }
 
@@ -74,7 +74,7 @@ class ByteCountedStringTest extends TestCase {
   public function length_of_two_chunks() {
     $this->assertEquals(
       (self::$CHUNK_HEADER + self::$CHUNK_LENGTH) * 2, 
-      create(new ByteCountedString(self::$CHUNK_STRING.self::$CHUNK_STRING))->length(self::$CHUNK_LENGTH)
+      (new ByteCountedString(self::$CHUNK_STRING.self::$CHUNK_STRING))->length(self::$CHUNK_LENGTH)
     );
   }
 
@@ -86,7 +86,7 @@ class ByteCountedStringTest extends TestCase {
   public function length_of_two_chunks_minus_one_char() {
     $this->assertEquals(
       (self::$CHUNK_HEADER + self::$CHUNK_LENGTH) * 2 - 1, 
-      create(new ByteCountedString(self::$CHUNK_STRING.substr(self::$CHUNK_STRING, 0, -1)))->length(self::$CHUNK_LENGTH)
+      (new ByteCountedString(self::$CHUNK_STRING.substr(self::$CHUNK_STRING, 0, -1)))->length(self::$CHUNK_LENGTH)
     );
   }
 
@@ -98,7 +98,7 @@ class ByteCountedStringTest extends TestCase {
   public function length_of_two_chunks_plus_one_char() {
     $this->assertEquals(
       (self::$CHUNK_HEADER + self::$CHUNK_LENGTH) * 2 + self::$CHUNK_HEADER + 1, 
-      create(new ByteCountedString(self::$CHUNK_STRING.self::$CHUNK_STRING.'a'))->length(self::$CHUNK_LENGTH)
+      (new ByteCountedString(self::$CHUNK_STRING.self::$CHUNK_STRING.'a'))->length(self::$CHUNK_LENGTH)
     );
   }
 
