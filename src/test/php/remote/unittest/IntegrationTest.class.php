@@ -43,7 +43,7 @@ class IntegrationTest extends \unittest\TestCase {
    */
   #[@beforeClass]
   public static function registerClientClasses() {
-    $a= \lang\XPClass::forName(\xp::nameOf(__CLASS__))
+    $a= (new \lang\XPClass(__CLASS__))
       ->getPackage()
       ->getPackage('deploy')
       ->getResourceAsStream('beans.test.CalculatorBean.xar')

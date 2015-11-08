@@ -1,13 +1,12 @@
 <?php namespace remote\protocol;
 
 use remote\RemoteStackTraceElement;
-
+use lang\XPClass;
 
 /**
  * Mapping for lang.StackTraceElement
  *
- * @see      xp://remote.protocol.Serializer
- * @purpose  Mapping
+ * @see   xp://remote.protocol.Serializer
  */
 class StackTraceElementMapping extends \lang\Object implements SerializerMapping {
 
@@ -50,7 +49,7 @@ class StackTraceElementMapping extends \lang\Object implements SerializerMapping
   public function representationOf($serializer, $value, $context= array()) {
     return 't:4:{'.
       's:4:"file";'.$serializer->representationOf(null == $value->file ? null : basename($value->file)).
-      's:5:"class";'.$serializer->representationOf(null == $value->class ? null : \xp::nameOf($value->class)).
+      's:5:"class";'.$serializer->representationOf(null == $value->class ? null : XPClass::nameOf($value->class)).
       's:6:"method";'.$serializer->representationOf($value->method).
       's:4:"line";'.$serializer->representationOf($value->line).
     '}';
