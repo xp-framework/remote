@@ -3,6 +3,9 @@ EASC remoting for the XP Framework ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* **Heads up: This library was discontinued! See xp-framework/rfc#304**
+  (@thekid)
+
 ## 6.0.2 / 2015-11-08
 
 * Fixed forward compatibility with XP 6.6.0 - @thekid
